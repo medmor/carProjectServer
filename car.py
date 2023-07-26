@@ -56,6 +56,7 @@ class Car:
     def setSpeed(self, speed: int):
         self.backMotor.setSpedd(speed)
 
+    #to do : call this method on server stop
     def cleanup():
         GPIO.cleanup()
 
