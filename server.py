@@ -1,45 +1,37 @@
-from bottle import post, route, static_file, run
-from car import Motor, Car
-
-car = Car(Motor(23, 24), Motor(18, 15, 14))
-
+from bottle import post, route, run
 
 @route("/")
 def index():
-    return static_file("index.html", root="./")
+    return "Rc Car Server"
 
 
-@post("/right")
+@route("/right")
 def right():
-    car.turnRight()
+    return "Car turning right"
 
 
-@post("/left")
+@route("/left")
 def left():
-    car.turnLeft()
+    return "Car turning left"
 
 
-@post("/center")
+@route("/center")
 def center():
-    car.resetDir()
+    return "Car turning center"
 
 
-@post("/forward/<amount>")
-def forward(amount):
-    car.setSpeed(int(amount))
-    car.runForward()
+@route("/forward/<speed>")
+def forward(speed):
+    return "Car running froward at speed : " + speed
 
 
-@post("/backward/<amount>")
-def backward(amount):
-    car.setSpeed(int(amount))
-    car.runBackward()
+@route("/backward/<speed>")
+def backward(speed):
+        return "Car running backward at speed : " + speed
 
 
-@post("/stop")
+@route("/stop")
 def stop():
-    car.setSpeed(0)
-    car.stop()
+        return "Car stopped, the speed is : 0"
 
-run(host="0.0.0.0", port=8080, debug=True)
-
+run(host="0.0.0.0", port=8080)
