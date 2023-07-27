@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import pygame
 
 GPIO.setmode(GPIO.BCM)
 
@@ -31,9 +32,13 @@ class Motor:
 
 
 class Car:
+
     def __init__(self, frontMotor: Motor, backMotor: Motor) -> None:
         self.frontMotor = frontMotor
         self.backMotor = backMotor
+        pygame.mixer.init()
+        pygame.mixer.music.load("siren.mp3")
+        pygame.mixer.music.set_volume(1.0)
 
     def turnRight(self):
         self.frontMotor.forward()
@@ -55,6 +60,15 @@ class Car:
 
     def setSpeed(self, speed: int):
         self.backMotor.setSpedd(speed)
+    
+    def siren(self):
+        print(pygame.mixer.music.get_busy())
+        if(pygame.mixer.music.get_busy()==0):
+            print("siren car")
+            pygame.mixer.music.play()
+        else:
+            print("siren car busy")
+            pygame.mixer.music.stop()
 
     #to do : call this method on server stop
     def cleanup():

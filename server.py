@@ -41,5 +41,11 @@ def stop():
     car.setSpeed(0)
     car.stop()
 
+@post("/siren")
+def siren():
+    print("siren")
+    car.siren()
+
+
 run(host="0.0.0.0", port=8080, debug=True)
 
