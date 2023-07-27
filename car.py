@@ -13,7 +13,7 @@ class Motor:
         if io3 > 0:
             GPIO.setup(io3, GPIO.OUT)
             self.io3 = GPIO.PWM(io3, 1000)
-            self.io3.start(50)
+            self.io3.start(60)
 
     def forward(self):
         GPIO.output(self.io1, GPIO.HIGH)

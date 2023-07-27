@@ -3,47 +3,41 @@ from car import Motor, Car
 
 car = Car(Motor(23, 24), Motor(18, 15, 14))
 
-
 @route("/")
 def index():
     return static_file("index.html", root="./")
-
 
 @post("/right")
 def right():
     car.turnRight()
 
-
 @post("/left")
 def left():
     car.turnLeft()
-
 
 @post("/center")
 def center():
     car.resetDir()
 
 
-@post("/forward/<amount>")
-def forward(amount):
-    car.setSpeed(int(amount))
+@post("/forward")
+def forward():
     car.runForward()
 
-
-@post("/backward/<amount>")
-def backward(amount):
-    car.setSpeed(int(amount))
+@post("/backward")
+def backward():
     car.runBackward()
 
+@post("/speed/<amount>")
+def speed(amount):
+    car.setSpeed(int(amount))
 
 @post("/stop")
 def stop():
-    car.setSpeed(0)
     car.stop()
 
 @post("/siren")
 def siren():
-    print("siren")
     car.siren()
 
 
