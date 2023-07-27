@@ -62,12 +62,9 @@ class Car:
         self.backMotor.setSpedd(speed)
     
     def siren(self):
-        print(pygame.mixer.music.get_busy())
         if(pygame.mixer.music.get_busy()==0):
-            print("siren car")
             pygame.mixer.music.play()
         else:
-            print("siren car busy")
             pygame.mixer.music.stop()
 
     #to do : call this method on server stop

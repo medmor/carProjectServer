@@ -19,13 +19,22 @@ def left():
 def center():
     car.resetDir()
 
-
 @post("/forward")
 def forward():
     car.runForward()
 
+@post("/forward/<amount>")
+def forwardWithSpeed(amount):
+    car.setSpeed(int(amount))
+    car.runForward()
+
 @post("/backward")
 def backward():
+    car.runBackward()
+
+@post("/backward/<amount>")
+def backwardWithSpeed(amount):
+    car.setSpeed(int(amount))
     car.runBackward()
 
 @post("/speed/<amount>")
